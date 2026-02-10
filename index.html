@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Gokurakugai Fan Community</title>
+
+<style>
+/* ===== GLOBAL ===== */
+:root {
+  --red:#d61c2c;
+  --dark:#222;
+  --light:#fdecec;
+  --card:#fff;
+  --border:#d61c2c;
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Georgia,serif}
+body{
+  background:repeating-linear-gradient(45deg,#fdecec,#fdecec 20px,#fae1e1 20px,#fae1e1 40px);
+}
+a{text-decoration:none;color:inherit}
+.container{max-width:1200px;margin:auto;padding:60px 20px}
+.section{background:#fff;border:3px solid var(--border);padding:40px;margin-bottom:60px}
+h1,h2,h3{color:var(--red);margin-bottom:20px}
+p{line-height:1.7;color:#222}
+
+/* ===== NAV ===== */
+header{
+  background:#fff;border-bottom:2px solid var(--border);
+  position:sticky;top:0;z-index:999
+}
+.nav{
+  max-width:1200px;margin:auto;
+  display:flex;justify-content:space-between;
+  align-items:center;padding:16px 20px
+}
+.logo{font-size:22px;color:var(--red);font-weight:bold}
+nav{display:flex;gap:20px;align-items:center}
+.dropdown{position:relative}
+.dropdown-content{
+  display:none;position:absolute;top:28px;
+  background:#fff;border:2px solid var(--border)
+}
+.dropdown:hover .dropdown-content{display:block}
+.dropdown-content a{display:block;padding:10px 16px}
+
+/* ===== BUTTONS ===== */
+.btn{background:var(--red);color:#fff;padding:12px 24px;display:inline-block}
+
+/* ===== GRID ===== */
+.grid{display:grid;gap:30px}
+.grid-3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+
+/* ===== CARDS ===== */
+.card{border:3px solid var(--border);padding:30px;text-align:center}
+.badge{border:2px solid var(--border);display:inline-block;padding:6px 12px;margin-bottom:10px}
+
+/* ===== LEADERBOARD ===== */
+.rank{font-size:22px;font-weight:bold}
+
+/* ===== RULES ===== */
+.rule:hover{background:#fae1e1}
+
+/* ===== FOOTER ===== */
+footer{
+  background:#fff;border-top:2px solid var(--border);
+  text-align:center;padding:30px;font-size:14px
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<header>
+  <div class="nav">
+    <div class="logo">極楽街</div>
+    <nav>
+      <a href="#about">ABOUT</a>
+      <a href="#news">NEWS</a>
+      <a href="#theories">THEORIES</a>
+      <div class="dropdown">
+        <span>MANGA ▾</span>
+        <div class="dropdown-content">
+          <a href="#manga">Manga Hub</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#characters">Characters</a>
+        </div>
+      </div>
+      <a href="#rules">RULES</a>
+      <a href="#info">INFO</a>
+      <a href="#staff">STAFF</a>
+      <a href="#leaderboard">LEADERBOARD</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<div id="about" class="container section">
+<h1>Manga Hub</h1>
+<p>Explore everything about the <b>Gokurakugai</b> manga series.</p>
+<div class="grid grid-3">
+<div class="card"><h3>Gallery</h3><p>Artwork, panels, fan art</p></div>
+<div class="card"><h3>Characters</h3><p>Alma, Tao, and more</p></div>
+<div class="card"><h3>Discussions</h3><p>Theories and analysis</p></div>
+</div>
+</div>
+
+<!-- GALLERY -->
+<div id="gallery" class="container section">
+<h2>Gallery</h2>
+<p>Official art, manga panels, and fan creations.</p>
+</div>
+
+<!-- CHARACTERS -->
+<div id="characters" class="container section">
+<h2>Characters</h2>
+<div class="card">
+<h3>Alma</h3>
+<span class="badge">Main Protagonist</span>
+<p>Stoic, supernatural troubleshooter.</p>
+</div>
+<div class="card">
+<h3>Tao</h3>
+<span class="badge">Main Protagonist</span>
+<p>Energetic, optimistic partner.</p>
+</div>
+</div>
+
+<!-- RULES -->
+<div id="rules" class="container section">
+<h2>Community Rules</h2>
+<div class="grid grid-3">
+<script>
+const rules=[
+"Be respectful","Stay on topic","No spoilers","No spam","No harassment",
+"No hate speech","No NSFW","No impersonation","No piracy","No drama bait",
+"No doxxing","No threats","No alt abuse","No scamming","Follow staff",
+"Use channels correctly","English only","Respect privacy","No advertising","Have fun"
+];
+document.write(rules.map((r,i)=>`<div class='card rule'><b>${i+1}.</b> ${r}</div>`).join(""));
+</script>
+</div>
+</div>
+
+<!-- INFO -->
+<div id="info" class="container section">
+<h2>Information Hub</h2>
+<p>Weekly Shonen Jump • Shonen • Action • Supernatural • Mystery</p>
+</div>
+
+<!-- STAFF -->
+<div id="staff" class="container section">
+<h2>Our Staff Team</h2>
+<div class="grid grid-3">
+<div class="card"><h3>Founder</h3><p>1 Founder/Admin</p></div>
+<div class="card"><h3>Admins</h3><p>4 Admins</p></div>
+<div class="card"><h3>Moderators</h3><p>3 Moderators</p></div>
+<div class="card"><h3>Trial Moderator</h3><p>1 Trial Mod</p></div>
+</div>
+</div>
+
+<!-- LEADERBOARD -->
+<div id="leaderboard" class="container section">
+<h2>Community Leaderboard</h2>
+<p>MEE6 Powered</p>
+
+<iframe
+src="https://discord.com/widget?id=995737046725443686&theme=dark"
+width="350"
+height="500"
+allowtransparency="true"
+frameborder="0"
+sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+</iframe>
+
+<p><b>Server ID:</b> 995737046725443686</p>
+<p><b>Widget API:</b> https://discord.com/api/guilds/995737046725443686/widget.json</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+<p>Gokurakugai Fan Community — Unofficial fan project</p>
+</footer>
+
+</body>
+</html>
