@@ -2,90 +2,302 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Gokurakugai Fan Community</title>
+<title>Gokurakugai Community</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* ===== GLOBAL ===== */
-:root {
+/* ================= GLOBAL DESIGN ================= */
+:root{
   --red:#d61c2c;
-  --dark:#222;
-  --light:#fdecec;
-  --card:#fff;
+  --red-dark:#b31624;
+  --bg:#fdecec;
+  --bg2:#fae1e1;
+  --card:#ffffff;
+  --text:#222;
+  --muted:#666;
   --border:#d61c2c;
+  --radius:6px;
 }
-*{box-sizing:border-box;margin:0;padding:0;font-family:Georgia,serif}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Georgia,serif;
+}
+
 body{
-  background:repeating-linear-gradient(45deg,#fdecec,#fdecec 20px,#fae1e1 20px,#fae1e1 40px);
+  background:repeating-linear-gradient(
+    45deg,
+    var(--bg),
+    var(--bg) 20px,
+    var(--bg2) 20px,
+    var(--bg2) 40px
+  );
+  color:var(--text);
 }
-a{text-decoration:none;color:inherit}
-.container{max-width:1200px;margin:auto;padding:60px 20px}
-.section{background:#fff;border:3px solid var(--border);padding:40px;margin-bottom:60px}
-h1,h2,h3{color:var(--red);margin-bottom:20px}
-p{line-height:1.7;color:#222}
 
-/* ===== NAV ===== */
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+/* ================= UPGRADE: DARK MODE ================= */
+body.dark {
+  --bg:#121212;
+  --bg2:#1c1c1c;
+  --card:#181818;
+  --text:#eee;
+  --muted:#aaa;
+  background:#121212;
+}
+
+body.dark header,
+body.dark footer {
+  background:#181818;
+}
+
+body.dark .section,
+body.dark .hero-box,
+body.dark .card {
+  background:#181818;
+}
+
+/* ================= SMOOTH SCROLL ================= */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ================= DARK MODE TOGGLE ================= */
+.toggle {
+  cursor:pointer;
+  border:2px solid var(--border);
+  padding:6px 12px;
+  font-size:12px;
+}
+
+/* ================= MOBILE POLISH ================= */
+@media (max-width: 768px) {
+  nav {
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  .hero-box {
+    padding:40px 30px;
+  }
+
+  .hero h1 {
+    font-size:36px;
+  }
+
+  .grid-3 {
+    grid-template-columns:1fr;
+  }
+
+  .dropdown-menu {
+    position:static;
+  }
+}
+
+/* ================= NAVBAR ================= */
 header{
-  background:#fff;border-bottom:2px solid var(--border);
-  position:sticky;top:0;z-index:999
+  background:#fff;
+  border-bottom:2px solid var(--border);
+  position:sticky;
+  top:0;
+  z-index:999;
 }
+
 .nav{
-  max-width:1200px;margin:auto;
-  display:flex;justify-content:space-between;
-  align-items:center;padding:16px 20px
+  max-width:1200px;
+  margin:auto;
+  padding:16px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
-.logo{font-size:22px;color:var(--red);font-weight:bold}
-nav{display:flex;gap:20px;align-items:center}
-.dropdown{position:relative}
-.dropdown-content{
-  display:none;position:absolute;top:28px;
-  background:#fff;border:2px solid var(--border)
+
+.logo{
+  font-size:24px;
+  font-weight:bold;
+  color:var(--red);
 }
-.dropdown:hover .dropdown-content{display:block}
-.dropdown-content a{display:block;padding:10px 16px}
 
-/* ===== BUTTONS ===== */
-.btn{background:var(--red);color:#fff;padding:12px 24px;display:inline-block}
-
-/* ===== GRID ===== */
-.grid{display:grid;gap:30px}
-.grid-3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
-
-/* ===== CARDS ===== */
-.card{border:3px solid var(--border);padding:30px;text-align:center}
-.badge{border:2px solid var(--border);display:inline-block;padding:6px 12px;margin-bottom:10px}
-
-/* ===== LEADERBOARD ===== */
-.rank{font-size:22px;font-weight:bold}
-
-/* ===== RULES ===== */
-.rule:hover{background:#fae1e1}
-
-/* ===== FOOTER ===== */
-footer{
-  background:#fff;border-top:2px solid var(--border);
-  text-align:center;padding:30px;font-size:14px
+nav{
+  display:flex;
+  gap:20px;
+  align-items:center;
+  font-size:14px;
 }
+
+.dropdown{
+  position:relative;
+  cursor:pointer;
+}
+
+.dropdown-menu{
+  display:none;
+  position:absolute;
+  top:26px;
+  background:#fff;
+  border:2px solid var(--border);
+  min-width:160px;
+}
+
+.dropdown:hover .dropdown-menu{
+  display:block;
+}
+
+.dropdown-menu a{
+  display:block;
+  padding:10px 14px;
+  white-space:nowrap;
+}
+
+/* ================= HERO ================= */
+.hero{
+  height:90vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.hero-box{
+  background:#fff;
+  border:3px solid var(--border);
+  padding:70px 60px;
+  max-width:720px;
+}
+
+.hero h1{
+  font-size:48px;
+  color:var(--red);
+  margin-bottom:20px;
+}
+
+.hero p{
+  font-size:18px;
+  margin-bottom:30px;
+}
+
+.hero small{
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* ================= SECTIONS ================= */
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:80px 20px;
+}
+
+.section{
+  background:#fff;
+  border:3px solid var(--border);
+  padding:50px;
+  margin-bottom:80px;
+}
+
+.section h2{
+  color:var(--red);
+  margin-bottom:20px;
+}
+
+/* ================= GRID & CARDS ================= */
+.grid{
+  display:grid;
+  gap:30px;
+}
+
+.grid-3{
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+}
+
+.card{
+  border:3px solid var(--border);
+  padding:30px;
+  transition:0.2s;
+}
+
+.card h3{
+  color:var(--red);
+  margin-bottom:10px;
+}
+
+.card:hover{
+  background:var(--bg2);
+}
+
+/* ================= BUTTON ================= */
+.btn{
+  display:inline-block;
+  margin-top:20px;
+  padding:12px 24px;
+  background:var(--red);
+  color:#fff;
+  border-radius:var(--radius);
+  font-weight:bold;
+}
+.btn:hover{
+  background:var(--red-dark);
+}
+
+/* ================= SCROLL REVEAL ================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ================= UI POLISH ================= */
+.card {
+  cursor:pointer;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+input, textarea, select {
+  transition: border 0.2s;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline:none;
+  border-color: var(--red-dark);
+}
+  
 </style>
 </head>
 
 <body>
 
-<!-- NAV -->
+<!-- ================= NAV ================= -->
 <header>
   <div class="nav">
     <div class="logo">極楽街</div>
     <nav>
-      <a href="#about">ABOUT</a>
+      <a href="#home">ABOUT</a>
       <a href="#news">NEWS</a>
       <a href="#theories">THEORIES</a>
+
       <div class="dropdown">
         <span>MANGA ▾</span>
-        <div class="dropdown-content">
+        <div class="dropdown-menu">
           <a href="#manga">Manga Hub</a>
           <a href="#gallery">Gallery</a>
           <a href="#characters">Characters</a>
         </div>
       </div>
+
       <a href="#rules">RULES</a>
       <a href="#info">INFO</a>
       <a href="#staff">STAFF</a>
@@ -94,93 +306,1022 @@ footer{
   </div>
 </header>
 
-<!-- ABOUT -->
-<div id="about" class="container section">
-<h1>Manga Hub</h1>
-<p>Explore everything about the <b>Gokurakugai</b> manga series.</p>
-<div class="grid grid-3">
-<div class="card"><h3>Gallery</h3><p>Artwork, panels, fan art</p></div>
-<div class="card"><h3>Characters</h3><p>Alma, Tao, and more</p></div>
-<div class="card"><h3>Discussions</h3><p>Theories and analysis</p></div>
-</div>
+<!-- ================= HOME / HERO ================= -->
+<section id="home" class="hero">
+  <div class="hero-box">
+    <h1>Gokurakugai</h1>
+    <p>
+      A fan-driven community for discussion, theories, artwork,
+      and deep exploration of the world of <b>Gokurakugai</b>.
+    </p>
+    <a href="#news" class="btn">Enter Community</a><br><br>
+    <small>Scroll down to explore</small>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<div class="container">
+
+  <div class="section reveal">
+    <h2>About the Community</h2>
+    <p>
+      This community serves as a central hub for fans of Gokurakugai.
+      Here, members share insights, discuss chapters, create theories,
+      and celebrate the characters and atmosphere of the series.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>The World of Gokurakugai</h2>
+    <p>
+      Beneath glowing streets and quiet corners lies a city shaped
+      by curses, spirits, and unresolved emotions. Alma and Tao
+      operate within this fragile balance, confronting threats
+      that blur the line between human and supernatural.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>Explore the Community</h2>
+    <div class="grid grid-3">
+      <div class="card">
+        <h3>Latest News</h3>
+        <p>Official announcements, featured articles, and updates.</p>
+        <a href="#news" class="btn">View News</a>
+      </div>
+      <div class="card">
+        <h3>Fan Theories</h3>
+        <p>Submit and explore community-created theories.</p>
+        <a href="#theories" class="btn">Read Theories</a>
+      </div>
+      <div class="card">
+        <h3>Manga Hub</h3>
+        <p>Characters, galleries, and information about the manga.</p>
+        <a href="#manga" class="btn">Enter Manga Hub</a>
+      </div>
+    </div>
+  </div>
+
 </div>
 
-<!-- GALLERY -->
-<div id="gallery" class="container section">
-<h2>Gallery</h2>
-<p>Official art, manga panels, and fan creations.</p>
+<!-- ================= NEWS ================= -->
+<div id="news" class="container">
+
+  <!-- NEWS HEADER -->
+  <div class="section">
+    <h2>News & Announcements</h2>
+    <p>
+      Official updates, featured articles, chapter discussions,
+      and important community announcements.
+    </p>
+  </div>
+
+  <!-- FEATURED ARTICLE -->
+  <div class="section">
+    <h3>Featured</h3>
+
+    <div class="grid" style="grid-template-columns:1fr 2fr;gap:40px">
+      <!-- FEATURE IMAGE PLACEHOLDER -->
+      <div style="
+        border:3px solid var(--border);
+        background:#ddd;
+        height:260px;
+      "></div>
+
+      <!-- FEATURE CONTENT -->
+      <div>
+        <span style="
+          border:2px solid var(--border);
+          padding:4px 10px;
+          font-size:12px;
+          display:inline-block;
+          margin-bottom:10px;
+        ">PINNED</span>
+
+        <h3>The World of Gokurakugai: An Introduction</h3>
+
+        <p>
+          A deep dive into the atmosphere, structure, and themes of
+          Gokurakugai, written for both new and longtime readers.
+        </p>
+
+        <p style="margin-top:10px">
+          <b>By Admin</b> · January 2026 · 6 min read
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FILTERS -->
+  <div class="section">
+    <div style="display:flex;gap:10px;margin-bottom:30px">
+      <div class="card">All</div>
+      <div class="card">Announcements</div>
+      <div class="card">Chapter Discussions</div>
+      <div class="card">Community</div>
+    </div>
+
+    <!-- ARTICLES GRID -->
+    <div class="grid grid-3">
+
+      <div class="card">
+        <span style="border:2px solid var(--border);padding:4px 10px;font-size:12px">Announcement</span>
+        <h3>Community Guidelines Update</h3>
+        <p>
+          Updates and clarifications regarding server rules and moderation.
+        </p>
+        <p><b>Staff</b> · Jan 2026</p>
+      </div>
+
+      <div class="card">
+        <span style="border:2px solid var(--border);padding:4px 10px;font-size:12px">Chapter</span>
+        <h3>Chapter 15 Discussion Thread</h3>
+        <p>
+          Share your interpretations, theories, and reactions to the latest chapter.
+        </p>
+        <p><b>Moderator</b> · Jan 2026</p>
+      </div>
+
+      <div class="card">
+        <span style="border:2px solid var(--border);padding:4px 10px;font-size:12px">Community</span>
+        <h3>Fan Art Spotlight</h3>
+        <p>
+          Highlighting outstanding artwork created by members of the community.
+        </p>
+        <p><b>Admin</b> · Dec 2025</p>
+      </div>
+
+    </div>
+  </div>
+
 </div>
 
-<!-- CHARACTERS -->
-<div id="characters" class="container section">
-<h2>Characters</h2>
-<div class="card">
-<h3>Alma</h3>
-<span class="badge">Main Protagonist</span>
-<p>Stoic, supernatural troubleshooter.</p>
-</div>
-<div class="card">
-<h3>Tao</h3>
-<span class="badge">Main Protagonist</span>
-<p>Energetic, optimistic partner.</p>
-</div>
+<!-- ================= THEORIES ================= -->
+<div id="theories" class="container">
+
+  <!-- HEADER -->
+  <div class="section">
+    <h2>Fan Theory Submission</h2>
+    <p>
+      Share your ideas, predictions, and analyses with the community.
+      Approved theories will be featured publicly.
+    </p>
+  </div>
+
+  <!-- GUIDELINES -->
+  <div class="section">
+    <h3>Submission Guidelines</h3>
+    <ul style="line-height:1.8">
+      <li>No spam or low-effort submissions</li>
+      <li>Spoilers must be clearly marked</li>
+      <li>Theories should be well-explained and respectful</li>
+      <li>Staff reserves the right to approve or reject submissions</li>
+    </ul>
+  </div>
+
+  <!-- SUBMISSION FORM -->
+  <div class="section">
+    <h3>Submit Your Theory</h3>
+
+    <form style="display:grid;gap:20px">
+
+      <input type="text" placeholder="Username (required)" required
+        style="padding:12px;border:2px solid var(--border)">
+
+      <input type="email" placeholder="Email (required)" required
+        style="padding:12px;border:2px solid var(--border)">
+
+      <input type="text" placeholder="Discord Username (optional)"
+        style="padding:12px;border:2px solid var(--border)">
+
+      <input type="text" placeholder="Theory Title (required)" required
+        style="padding:12px;border:2px solid var(--border)">
+
+      <select style="padding:12px;border:2px solid var(--border)">
+        <option>Character Origins</option>
+        <option>Plot Predictions</option>
+        <option>Power System Analysis</option>
+        <option>World Building</option>
+        <option>Character Relationships</option>
+        <option>Hidden Symbolism</option>
+        <option>Villain Theories</option>
+        <option>Ending Predictions</option>
+        <option>Other</option>
+      </select>
+
+      <textarea rows="6" placeholder="Write your theory here..."
+        style="padding:12px;border:2px solid var(--border)"></textarea>
+
+      <label>
+        <input type="checkbox"> Contains spoilers
+      </label>
+
+      <label>
+        <input type="checkbox" required> I agree to the submission guidelines
+      </label>
+
+      <button type="submit" class="btn">Submit Theory</button>
+    </form>
+  </div>
+
+  <!-- POPULAR THEORIES -->
+  <div class="section">
+    <h3>Popular Community Theories</h3>
+
+    <div class="grid grid-3">
+
+      <div class="card">
+        <span style="border:2px solid var(--border);padding:4px 10px;font-size:12px">
+          World Building
+        </span>
+        <h3>The True Nature of Gokurakugai</h3>
+        <p>
+          A theory suggesting the district itself is a manifestation
+          of collective unresolved curses.
+        </p>
+        <p><b>By ShadowReader</b> · ❤️ 128</p>
+      </div>
+
+      <div class="card">
+        <span style="border:2px solid var(--border);padding:4px 10px;font-size:12px">
+          Character Origins
+        </span>
+        <h3>Alma’s Connection to the Curses</h3>
+        <p>
+          Exploring Alma’s past and his possible link to the curse system.
+        </p>
+        <p><b>By NightAnalyst</b> · ❤️ 94</p>
+      </div>
+
+      <div class="card">
+        <span style="border:2px solid var(--border);padding:4px 10px;font-size:12px">
+          Ending Prediction
+        </span>
+        <h3>The Fate of Tao</h3>
+        <p>
+          Predicting Tao’s role in the final arc and potential sacrifices.
+        </p>
+        <p><b>By RedLantern</b> · ❤️ 76</p>
+      </div>
+
+    </div>
+  </div>
+
 </div>
 
-<!-- RULES -->
-<div id="rules" class="container section">
-<h2>Community Rules</h2>
-<div class="grid grid-3">
-<script>
-const rules=[
-"Be respectful","Stay on topic","No spoilers","No spam","No harassment",
-"No hate speech","No NSFW","No impersonation","No piracy","No drama bait",
-"No doxxing","No threats","No alt abuse","No scamming","Follow staff",
-"Use channels correctly","English only","Respect privacy","No advertising","Have fun"
-];
-document.write(rules.map((r,i)=>`<div class='card rule'><b>${i+1}.</b> ${r}</div>`).join(""));
-</script>
-</div>
+<!-- ================= MANGA HUB ================= -->
+<div id="manga" class="container">
+
+  <!-- HEADER -->
+  <div class="section">
+    <h2>Manga Hub</h2>
+    <p>
+      Explore information about the Gokurakugai manga, including characters,
+      artwork, discussions, and what makes the series unique.
+    </p>
+  </div>
+
+  <!-- HUB CARDS -->
+  <div class="section">
+    <div class="grid grid-3">
+      <div class="card">
+        <h3>Gallery</h3>
+        <p>
+          Official illustrations, manga panels, and curated fan art.
+        </p>
+        <a href="#gallery" class="btn">View Gallery</a>
+      </div>
+
+      <div class="card">
+        <h3>Characters</h3>
+        <p>
+          Learn more about Alma, Tao, and other key characters.
+        </p>
+        <a href="#characters" class="btn">View Characters</a>
+      </div>
+
+      <div class="card">
+        <h3>Discussions</h3>
+        <p>
+          Chapter discussions, analysis, and community conversations.
+        </p>
+        <a href="#theories" class="btn">Join Discussions</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT THE MANGA -->
+  <div class="section">
+    <h3>About the Manga</h3>
+
+    <div class="grid" style="grid-template-columns:1fr 1fr;gap:40px">
+
+      <!-- LEFT COLUMN -->
+      <div>
+        <p><b>Magazine:</b> Weekly Shōnen Jump</p>
+        <p><b>Demographic:</b> Shōnen</p>
+        <p><b>Genres:</b> Action, Supernatural, Mystery</p>
+        <p><b>Status:</b> Ongoing</p>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div>
+        <ul style="line-height:1.8">
+          <li>Dark urban fantasy setting</li>
+          <li>Strong atmosphere and symbolism</li>
+          <li>Character-driven storytelling</li>
+          <li>Balance of mystery and action</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WHAT MAKES IT SPECIAL -->
+  <div class="section">
+    <h3>What Makes Gokurakugai Special</h3>
+    <p>
+      Gokurakugai stands out through its moody urban environment,
+      subtle world-building, and focus on emotional consequences.
+      Rather than relying solely on spectacle, the series emphasizes
+      atmosphere, character dynamics, and the lingering effects of curses
+      on both individuals and the city itself.
+    </p>
+  </div>
+
+  <!-- FEATURE LINKS -->
+  <div class="section">
+    <div class="grid grid-3">
+      <div class="card">
+        <h3>Latest Chapters</h3>
+        <p>
+          Stay updated with the most recent chapter releases and discussions.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Community Discussions</h3>
+        <p>
+          Participate in theory crafting and in-depth analysis with other fans.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Fan Creations</h3>
+        <p>
+          Discover artwork, edits, and creative projects by the community.
+        </p>
+      </div>
+    </div>
+  </div>
+
 </div>
 
-<!-- INFO -->
-<div id="info" class="container section">
-<h2>Information Hub</h2>
-<p>Weekly Shonen Jump • Shonen • Action • Supernatural • Mystery</p>
+<!-- ================= GALLERY ================= -->
+<div id="gallery" class="container">
+
+  <!-- HEADER -->
+  <div class="section">
+    <h2>Gallery</h2>
+    <p>
+      A curated collection of official artwork, manga panels,
+      and fan-created illustrations.
+    </p>
+  </div>
+
+  <!-- FILTERS -->
+  <div class="section">
+    <div style="display:flex;gap:10px;margin-bottom:30px">
+      <div class="card">All</div>
+      <div class="card">Official Art</div>
+      <div class="card">Manga Panels</div>
+      <div class="card">Fan Art</div>
+    </div>
+
+    <!-- GALLERY GRID -->
+    <div class="grid grid-3">
+
+      <div class="card">
+        <div style="height:200px;background:#ddd;margin-bottom:10px"></div>
+        <h3>Alma Portrait</h3>
+        <p>Official Art</p>
+      </div>
+
+      <div class="card">
+        <div style="height:200px;background:#ddd;margin-bottom:10px"></div>
+        <h3>Tao Action Panel</h3>
+        <p>Manga Panel</p>
+      </div>
+
+      <div class="card">
+        <div style="height:200px;background:#ddd;margin-bottom:10px"></div>
+        <h3>Neon District</h3>
+        <p>Fan Art</p>
+      </div>
+
+      <div class="card">
+        <div style="height:200px;background:#ddd;margin-bottom:10px"></div>
+        <h3>Alma & Tao</h3>
+        <p>Fan Art</p>
+      </div>
+
+      <div class="card">
+        <div style="height:200px;background:#ddd;margin-bottom:10px"></div>
+        <h3>Curse Manifestation</h3>
+        <p>Manga Panel</p>
+      </div>
+
+      <div class="card">
+        <div style="height:200px;background:#ddd;margin-bottom:10px"></div>
+        <h3>Street at Night</h3>
+        <p>Official Art</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SHARE ART CTA -->
+  <div class="section">
+    <h3>Share Your Art</h3>
+    <p>
+      Want your artwork featured in the gallery?
+      Share it with the community on our Discord server.
+    </p>
+    <a href="#leaderboard" class="btn">Join Discord</a>
+  </div>
+
 </div>
 
-<!-- STAFF -->
-<div id="staff" class="container section">
-<h2>Our Staff Team</h2>
-<div class="grid grid-3">
-<div class="card"><h3>Founder</h3><p>1 Founder/Admin</p></div>
-<div class="card"><h3>Admins</h3><p>4 Admins</p></div>
-<div class="card"><h3>Moderators</h3><p>3 Moderators</p></div>
-<div class="card"><h3>Trial Moderator</h3><p>1 Trial Mod</p></div>
+<!-- ================= CHARACTERS ================= -->
+<div id="characters" class="container">
+
+  <!-- HEADER -->
+  <div class="section">
+    <h2>Characters</h2>
+    <p>
+      Meet the key characters who operate within the shadows of Gokurakugai.
+    </p>
+  </div>
+
+  <!-- ALMA -->
+  <div class="section">
+    <div class="grid" style="grid-template-columns:1fr 2fr;gap:40px">
+
+      <!-- IMAGE -->
+      <div style="border:3px solid var(--border);height:320px;background:#ddd"></div>
+
+      <!-- CONTENT -->
+      <div>
+        <span style="border:2px solid var(--border);padding:6px 12px;display:inline-block;margin-bottom:10px">
+          Main Protagonist
+        </span>
+
+        <h3>Alma</h3>
+
+        <p>
+          A quiet and stoic troubleshooter who deals with supernatural cases
+          within Gokurakugai. Alma possesses a calm demeanor and a strong sense
+          of responsibility, often placing himself between danger and others.
+        </p>
+
+        <h4>Abilities & Skills</h4>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin:10px 0">
+          <span class="card">Supernatural Detection</span>
+          <span class="card">Spirit Communication</span>
+          <span class="card">Combat Mastery</span>
+          <span class="card">Curse Removal</span>
+        </div>
+
+        <p>
+          <b>Personality:</b> Stoic, protective, and quietly compassionate.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TAO -->
+  <div class="section">
+    <div class="grid" style="grid-template-columns:2fr 1fr;gap:40px">
+
+      <!-- CONTENT -->
+      <div>
+        <span style="border:2px solid var(--border);padding:6px 12px;display:inline-block;margin-bottom:10px">
+          Main Protagonist
+        </span>
+
+        <h3>Tao</h3>
+
+        <p>
+          Energetic and optimistic, Tao complements Alma with quick thinking
+          and adaptability. While outwardly cheerful, Tao is perceptive
+          and capable when situations turn dangerous.
+        </p>
+
+        <h4>Abilities & Skills</h4>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin:10px 0">
+          <span class="card">Enhanced Agility</span>
+          <span class="card">Combat Skills</span>
+          <span class="card">Investigation</span>
+          <span class="card">Quick Thinking</span>
+        </div>
+
+        <p>
+          <b>Personality:</b> Energetic, optimistic, and sharp-minded.
+        </p>
+      </div>
+
+      <!-- IMAGE -->
+      <div style="border:3px solid var(--border);height:320px;background:#ddd"></div>
+
+    </div>
+  </div>
+
+  <!-- MORE CHARACTERS -->
+  <div class="section">
+    <h3>More Characters Coming Soon</h3>
+    <p>
+      As the story progresses, additional characters will be introduced
+      and added to this section.
+    </p>
+  </div>
+
 </div>
+
+<!-- ================= RULES ================= -->
+<div id="rules" class="container">
+
+  <!-- HEADER -->
+  <div class="section">
+    <h2>Community Rules</h2>
+    <p>
+      These rules exist to ensure a respectful, safe, and enjoyable
+      environment for everyone in the Gokurakugai community.
+    </p>
+  </div>
+
+  <!-- RULES GRID -->
+  <div class="section">
+    <div class="grid grid-3">
+
+      <div class="card rule">1. Be respectful to all members</div>
+      <div class="card rule">2. Stay on topic in each channel</div>
+      <div class="card rule">3. Use spoiler tags when required</div>
+      <div class="card rule">4. No harassment or hate speech</div>
+      <div class="card rule">5. No spamming or flooding chats</div>
+      <div class="card rule">6. No self-promotion without permission</div>
+      <div class="card rule">7. Follow moderator instructions</div>
+      <div class="card rule">8. No NSFW or explicit content</div>
+      <div class="card rule">9. Respect differing opinions</div>
+      <div class="card rule">10. No impersonation of staff or users</div>
+      <div class="card rule">11. Use appropriate channels</div>
+      <div class="card rule">12. No piracy or illegal links</div>
+      <div class="card rule">13. No backseat moderation</div>
+      <div class="card rule">14. Do not abuse mentions or pings</div>
+      <div class="card rule">15. No drama farming or baiting</div>
+      <div class="card rule">16. Keep usernames appropriate</div>
+      <div class="card rule">17. Protect personal privacy</div>
+      <div class="card rule">18. Follow language guidelines</div>
+      <div class="card rule">19. Follow platform Terms of Service</div>
+      <div class="card rule">20. Staff decisions are final</div>
+
+    </div>
+  </div>
+
+  <!-- CONSEQUENCES -->
+  <div class="section">
+    <h3>Consequences</h3>
+    <p>
+      Violations of the community rules may result in one or more
+      of the following actions, depending on severity and frequency:
+    </p>
+    <ul style="line-height:1.8">
+      <li>Verbal or written warnings</li>
+      <li>Temporary mutes or restrictions</li>
+      <li>Temporary bans</li>
+      <li>Permanent removal from the community</li>
+    </ul>
+  </div>
+
+  <!-- CONTACT MODS -->
+  <div class="section">
+    <h3>Need Help or Have Concerns?</h3>
+    <p>
+      If you experience issues, rule violations, or need assistance,
+      please contact the moderation team through Discord.
+    </p>
+    <a href="#leaderboard" class="btn">Contact Moderators</a>
+  </div>
+
 </div>
 
-<!-- LEADERBOARD -->
-<div id="leaderboard" class="container section">
-<h2>Community Leaderboard</h2>
-<p>MEE6 Powered</p>
+<!-- ================= INFO ================= -->
+<div id="info" class="container">
 
-<iframe
-src="https://discord.com/widget?id=995737046725443686&theme=dark"
-width="350"
-height="500"
-allowtransparency="true"
-frameborder="0"
-sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
-</iframe>
+  <!-- HEADER -->
+  <div class="section">
+    <h2>Information</h2>
+    <p>
+      Official details about the manga, reading sources, and
+      frequently asked questions about the community.
+    </p>
+  </div>
 
-<p><b>Server ID:</b> 995737046725443686</p>
-<p><b>Widget API:</b> https://discord.com/api/guilds/995737046725443686/widget.json</p>
+  <!-- MANGA INFORMATION -->
+  <div class="section">
+    <h3>Manga Information</h3>
+    <ul style="line-height:1.9">
+      <li><b>Title:</b> Gokurakugai</li>
+      <li><b>Author:</b> Yuto Sano</li>
+      <li><b>Publisher:</b> Shueisha</li>
+      <li><b>Magazine:</b> Weekly Shōnen Jump</li>
+      <li><b>Genres:</b> Action, Supernatural, Mystery</li>
+      <li><b>Status:</b> Ongoing</li>
+    </ul>
+  </div>
+
+  <!-- WHERE TO READ -->
+  <div class="section">
+    <h3>Where to Read</h3>
+    <p>
+      Please support the official release of the manga by reading
+      through authorized platforms.
+    </p>
+    <ul style="line-height:1.9">
+      <li>Shōnen Jump (Digital)</li>
+      <li>MANGA Plus by Shueisha</li>
+      <li>Official physical volumes</li>
+    </ul>
+  </div>
+
+  <!-- COMMUNITY RESOURCES -->
+  <div class="section">
+    <h3>Community Resources</h3>
+    <ul style="line-height:1.9">
+      <li>Official Discord Server</li>
+      <li>Community Wiki</li>
+      <li>Fan Events & Activities</li>
+      <li>Announcements & Updates</li>
+    </ul>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section">
+    <h3>Frequently Asked Questions</h3>
+
+    <p><b>Is there an anime adaptation?</b><br>
+    Currently, no anime adaptation has been officially announced.</p>
+
+    <p><b>How often are chapters released?</b><br>
+    Chapters typically release weekly, subject to breaks.</p>
+
+    <p><b>Can I contribute content?</b><br>
+    Yes! You can submit theories, artwork, and participate in discussions.</p>
+
+    <p><b>Who runs this community?</b><br>
+    This is a fan-run community managed by volunteer staff members.</p>
+  </div>
+
 </div>
 
-<!-- FOOTER -->
+<!-- ================= STAFF ================= -->
+<div id="staff" class="container">
+
+  <!-- HEADER -->
+  <div class="section">
+    <h2>Our Staff Team</h2>
+    <p>
+      The team that keeps the Gokurakugai community running smoothly.
+    </p>
+  </div>
+
+  <!-- FOUNDER -->
+  <div class="section">
+    <h3>Founder / Admin</h3>
+    <div class="grid grid-3">
+      <div class="card">
+        <div style="width:120px;height:120px;border-radius:50%;background:#ddd;margin:0 auto 15px"></div>
+        <h3>FounderName</h3>
+        <p>Community direction, final decisions, administration.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMINS -->
+  <div class="section">
+    <h3>Administrators</h3>
+    <div class="grid grid-3">
+      <div class="card">
+        <div style="width:120px;height:120px;border-radius:50%;background:#ddd;margin:0 auto 15px"></div>
+        <h3>Admin One</h3>
+        <p>Server management and moderation oversight.</p>
+      </div>
+      <div class="card">
+        <div style="width:120px;height:120px;border-radius:50%;background:#ddd;margin:0 auto 15px"></div>
+        <h3>Admin Two</h3>
+        <p>Community operations and support.</p>
+      </div>
+      <div class="card">
+        <div style="width:120px;height:120px;border-radius:50%;background:#ddd;margin:0 auto 15px"></div>
+        <h3>Admin Three</h3>
+        <p>Events and internal coordination.</p>
+      </div>
+      <div class="card">
+        <div style="width:120px;height:120px;border-radius:50%;background:#ddd;margin:0 auto 15px"></div>
+        <h3>Admin Four</h3>
+        <p>Moderation escalation and support.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODERATORS -->
+  <div class="section">
+    <h3>Moderators</h3>
+    <div class="grid grid-3">
+      <div class="card">
+        <div style="width:120px;height:120px;border-radius:50%;background:#ddd;margin:0 auto 15px"></div>
+        <h3>Moderator One</h3>
+        <p>Daily moderation and rule enforcement.</p>
+      </div>
+      <div class="card">
+        <div style="width:120px;height:120px;border-radius:50%;background:#ddd;margin:0 auto 15px"></div>
+        <h3>Moderator Two</h3>
+        <p>Community assistance and reports.</p>
+      </div>
+      <div class="card">
+        <div style="width:120px;height:120px;border-radius:50%;background:#ddd;margin:0 auto 15px"></div>
+        <h3>Moderator Three</h3>
+        <p>Chat moderation and support.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRIAL MOD -->
+  <div class="section">
+    <h3>Trial Moderator</h3>
+    <div class="grid grid-3">
+      <div class="card" style="border-style:dashed">
+        <div style="width:120px;height:120px;border-radius:50%;background:#ddd;margin:0 auto 15px"></div>
+        <h3>Trial Mod</h3>
+        <p>Under evaluation and training.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- JOIN STAFF -->
+  <div class="section">
+    <h3>Join the Team</h3>
+    <p>
+      Interested in helping manage and grow the community?
+      Staff applications open periodically.
+    </p>
+    <ul style="line-height:1.8">
+      <li>Must be active and respectful</li>
+      <li>Good understanding of the rules</li>
+      <li>Ability to work with a team</li>
+    </ul>
+  </div>
+
+  <!-- CONTACT STAFF -->
+  <div class="section">
+    <h3>Contact Staff</h3>
+    <p>
+      For concerns, reports, or assistance, please reach out
+      through the Discord server.
+    </p>
+    <a href="#leaderboard" class="btn">Contact via Discord</a>
+  </div>
+
+</div>
+
+<!-- ================= LEADERBOARD ================= -->
+<div id="leaderboard" class="container">
+
+  <!-- HEADER -->
+  <div class="section">
+    <h2>Community Leaderboard</h2>
+    <p>
+      Rankings are powered by <b>MEE6</b> and reflect community activity,
+      participation, and engagement.
+    </p>
+  </div>
+
+  <!-- FILTERS -->
+  <div class="section">
+    <div style="display:flex;gap:10px;margin-bottom:30px">
+      <div class="card">Weekly</div>
+      <div class="card">Monthly</div>
+      <div class="card">All Time</div>
+    </div>
+
+    <!-- PODIUM -->
+    <div class="grid grid-3">
+      <div class="card">
+        <h3>🥇 Rank 1</h3>
+        <p><b>UsernameOne</b></p>
+        <p>Level 87 · 125,840 XP</p>
+      </div>
+      <div class="card">
+        <h3>🥈 Rank 2</h3>
+        <p><b>UsernameTwo</b></p>
+        <p>Level 82 · 118,320 XP</p>
+      </div>
+      <div class="card">
+        <h3>🥉 Rank 3</h3>
+        <p><b>UsernameThree</b></p>
+        <p>Level 78 · 109,560 XP</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FULL RANKINGS -->
+  <div class="section">
+    <h3>Top Members</h3>
+    <ul style="line-height:1.9">
+      <li>#4 MysteryHunter — Level 75 — 102,450 XP</li>
+      <li>#5 NightReader — Level 71 — 97,300 XP</li>
+      <li>#6 ShadowInk — Level 68 — 91,210 XP</li>
+      <li>#7 DistrictGuard — Level 59 — 72,340 XP</li>
+      <li>#8 LanternWalker — Level 57 — 69,880 XP</li>
+      <li>#9 CurseWatcher — Level 56 — 67,120 XP</li>
+      <li>#10 AlleyGhost — Level 54 — 63,940 XP</li>
+    </ul>
+  </div>
+
+  <!-- HOW TO EARN XP -->
+  <div class="section">
+    <h3>How to Earn XP</h3>
+    <ul style="line-height:1.9">
+      <li>Participating in chat discussions</li>
+      <li>Joining community events</li>
+      <li>Sharing theories, art, and insights</li>
+      <li>Helping other members</li>
+    </ul>
+  </div>
+
+  <!-- DISCORD WIDGET -->
+  <div class="section">
+    <h3>Live Discord Server</h3>
+
+    <iframe
+      src="https://discord.com/widget?id=995737046725443686&theme=dark"
+      width="350"
+      height="500"
+      allowtransparency="true"
+      frameborder="0"
+      sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+    </iframe>
+
+    <p style="margin-top:15px;font-size:14px">
+      <b>Server ID:</b> 995737046725443686<br>
+      <b>Widget API:</b>
+      https://discord.com/api/guilds/995737046725443686/widget.json
+    </p>
+  </div>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
 <footer>
-<p>Gokurakugai Fan Community — Unofficial fan project</p>
+  <p>
+    Gokurakugai Fan Community — Unofficial fan project.<br>
+    All rights belong to their respective owners.
+  </p>
 </footer>
+
+<!-- ================= ARTICLE MODAL ================= -->
+<div id="articleModal" style="
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
+">
+  <div style="
+    background:var(--card);
+    border:3px solid var(--border);
+    max-width:700px;
+    padding:40px;
+  ">
+    <h2 id="modalTitle"></h2>
+    <p id="modalBody"></p>
+    <br>
+    <button class="btn" onclick="closeArticle()">Close</button>
+  </div>
+</div>
+
+<script>
+
+/* ================= DARK MODE TOGGLE ================= */
+const toggle = document.createElement("div");
+toggle.className = "toggle";
+toggle.innerText = "🌙 Dark Mode";
+document.querySelector("nav").appendChild(toggle);
+
+toggle.onclick = () => {
+  document.body.classList.toggle("dark");
+  toggle.innerText = document.body.classList.contains("dark")
+    ? "☀ Light Mode"
+    : "🌙 Dark Mode";
+};
+
+/* ================= ARTICLE CMS DATA ================= */
+/*
+  ADD / EDIT ARTICLES HERE
+  This is the ONLY place you touch to create news posts
+*/
+const articles = [
+  {
+    category: "Announcement",
+    title: "Community Guidelines Update",
+    excerpt: "Clarifications and adjustments to server rules.",
+    author: "Staff",
+    date: "Jan 2026"
+  },
+  {
+    category: "Chapter",
+    title: "Chapter 15 Discussion Thread",
+    excerpt: "Share your interpretations and theories.",
+    author: "Moderator",
+    date: "Jan 2026"
+  },
+  {
+    category: "Community",
+    title: "Fan Art Spotlight",
+    excerpt: "Highlighting outstanding community artwork.",
+    author: "Admin",
+    date: "Dec 2025"
+  }
+];
+
+/* ================= RENDER ARTICLES ================= */
+const articleGrid = document.querySelector("#news .grid-3");
+if (articleGrid) {
+  articleGrid.innerHTML = "";
+  articles.forEach(a => {
+    articleGrid.innerHTML += `
+      <div class="card">
+        <span style="border:2px solid var(--border);padding:4px 10px;font-size:12px">
+          ${a.category}
+        </span>
+        <h3>${a.title}</h3>
+        <p>${a.excerpt}</p>
+        <p><b>${a.author}</b> · ${a.date}</p>
+      </div>
+    `;
+  });
+}
+
+<script>
+/* ================= SCROLL REVEAL LOGIC ================= */
+const reveals = document.querySelectorAll(".reveal");
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+    }
+  });
+}, { threshold: 0.15 });
+
+reveals.forEach(r => observer.observe(r));
+
+/* ================= ARTICLE MODAL LOGIC ================= */
+function openArticle(card) {
+  document.getElementById("modalTitle").innerText =
+    card.querySelector("h3").innerText;
+  document.getElementById("modalBody").innerText =
+    card.querySelector("p").innerText;
+  document.getElementById("articleModal").style.display = "flex";
+}
+
+function closeArticle() {
+  document.getElementById("articleModal").style.display = "none";
+}
+
+/* ================= THEORY FORM VALIDATION ================= */
+const theoryForm = document.querySelector("#theories form");
+if (theoryForm) {
+  theoryForm.addEventListener("submit", e => {
+    e.preventDefault();
+
+    const inputs = theoryForm.querySelectorAll("input[required], textarea");
+    for (let i of inputs) {
+      if (!i.value.trim()) {
+        alert("Please complete all required fields.");
+        return;
+      }
+    }
+
+    alert("Theory submitted successfully! (Pending approval)");
+    theoryForm.reset();
+  });
+}
+
+</script>
 
 </body>
 </html>
+
